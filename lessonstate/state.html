@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <div id="container">
+    <!--作为一个容易，用来插入react生成的dom节点-->
+    </div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+// 编写react代码
+    /*
+    * 定义组件， button  给 button 添加事件处理
+    * */
+    class MyButton extends React.Component{
+        constructor(props){
+            super(props);
+            this.handleClick = this.handleClick.bind(this)
+        }
+        handleClick(){
+            console.log('do something')
+        }
+        render(){
+            return(
+                <button onClick={this.handleClick}>{this.props.buttonTitle}</button>
+            )
+        }
+    }
+    MyButton.
+    ReactDOM.render(
+        <MyButton buttonTitle="按钮"/>,
+        document.getElementById('container')
+    )
+</script>
+</html>

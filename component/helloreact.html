@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .pstyle{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <!--作为一个容易，用来插入react生成的dom节点-->
+</div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+    // 编写react代码
+    // 渲染的内容，插入的节点，渲染后的回调
+    // ReactDOM.reader()
+    console.log(React)
+    class HelloMessage extends React.Component{
+        render(){
+            return (<h1>hello message</h1>)
+        }
+    }
+    const styles = {
+        hstyle:{
+            backgroundColor: '#23332d',
+            color:'darkblue'
+        }
+    }
+    class Complicated extends React.Component{
+        render(){
+            return (
+                <div style={{backgroundColor:'red',borderWidth:5,borderColor:'green',borderStyle:'solid'}}>
+                    <h1 style={styles.hstyle}>{this.props.firstrow}</h1>
+                    <p className="pstyle">{this.props.secondrow}</p>
+                </div>
+            )
+        }
+    }
+    class WebName extends React.Component{
+        render(){
+            return (
+                <h1>百度</h1>
+            )
+        }
+    }
+    class WebLink extends React.Component{
+        render(){
+            return (
+                <a href="https://www.baidu.com">https://www.baidu.com</a>
+            )
+        }
+    }
+    class WebShow extends React.Component{
+        render(){
+            return (
+                <div>
+                    <WebName/>
+                    <WebLink/>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <WebShow/>,
+        document.getElementById('container')
+    )
+    // ReactDOM.render(
+    //     <Complicated firstrow="你好" secondrow="我不好"/>,
+    //     document.getElementById('container')
+    // )
+    // ReactDOM.render(
+    //     <HelloMessage/>,
+    //     document.getElementById('container'),
+    //     function () {
+    //         console.log('finished')
+    //     }
+    // )
+</script>
+</html>

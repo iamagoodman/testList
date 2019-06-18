@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .pstyle{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <!--作为一个容易，用来插入react生成的dom节点-->
+</div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+    /*
+    * props state
+    * 通过 webshow 设置属性 wname wlink
+    * webshow的props对象增加两个属性值
+    * webname weblink 从webshow的props 对象中获取值
+    * 。。。this.props    props 提供的语法糖，可以将父组件全部属性 复制给 子组件
+    * 属性验证 propTypes
+    * */
+    class WebName extends React.Component{
+        render(){
+            return (
+                <h1>{this.props.webname}</h1>
+            )
+        }
+    }
+    class WebLink extends React.Component{
+        render(){
+            return (
+                <a href={this.props.weblink}>{this.props.weblink}</a>
+            )
+        }
+    }
+    class WebShow extends React.Component{
+        render(){
+            return (
+                <div>
+                    <WebName webname={this.props.webname}/>
+                    <WebLink weblink={this.props.weblink}/>
+                </div>
+            )
+        }
+    }
+    class Link extends React.Component{
+        render(){
+            return(
+                <a {...this.props}>{this.props.name}</a>
+            )
+        }
+    }
+    class ListComponent extends React.Component{
+        render(){
+            return(
+                <ul>
+                    {
+                        React.Children.map(this.props.children,function (child) {
+                            return <li>{child}</li>
+                        })
+                    }
+                </ul>
+            )
+        }
+    }
+    class ShowTitle extends React.Component{
+        render(){
+            return(
+                <h1>{this.props.title}</h1>
+            )
+        }
+    }
+    // console.log(React)
+    // ShowTitle.propTypes = {
+    //     title:React.PropTypes.string.isRequired
+    // }
+    ReactDOM.render(
+        <ShowTitle title="fdsjlkjfkldskljl"/>,
+        document.getElementById('container')
+    )
+    // ReactDOM.render(
+    //     (
+    //         <ListComponent>
+    //             <h1>哈哈哈哈哈哈</h1>
+    //             <a href="https://www.baidu.com">https://www.baidu.com</a>
+    //         </ListComponent>
+    //     ),
+    //     document.getElementById('container')
+    // )
+
+    // ReactDOM.render(
+    //     <Link href="https://www.baidu.com" name="百度"/>,
+    //     document.getElementById('container')
+    // )
+
+    // ReactDOM.render(
+    //     <WebShow webname="百度" weblink="https://www.baidu.com"/>,
+    //     document.getElementById('container'),
+    //     function () {
+    //         console.log('finished')
+    //     }
+    // )
+</script>
+</html>
