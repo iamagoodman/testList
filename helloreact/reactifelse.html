@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="container">
+    <!--作为一个容器，用来插入react生成的dom节点-->
+</div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+    // 编写react代码
+    // 渲染的内容，插入的节点，渲染后的回调
+    // ReactDOM.reader()
+    class LoginControl extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {isLogin:false}
+            this.clickLogout = this.clickLogout.bind(this)
+        }
+        clickLogin=()=>{
+            console.log(this)
+            this.setState({isLogin:true})
+        }
+        clickLogout(){
+            this.setState({isLogin:false})
+        }
+        render(){
+            const isLogin = this.state.isLogin
+            let button;
+            if(isLogin){
+                button = <LogoutButton onClick={this.clickLogout}/>
+            }else{
+                button = <LoginButton onClick={this.clickLogin}/>
+            }
+            return(
+                <div>
+                    <Texts isLogin={isLogin}/>
+                    {button}
+                </div>
+            )
+        }
+    }
+    function Texts(props) {
+        if(props.isLogin){
+            return(
+                <h1>欢迎回来</h1>
+            )
+        }else{
+            return(
+                <h1>请先登陆</h1>
+            )
+        }
+    }
+    function LoginButton(props) {
+        return(
+            <button onClick={props.onClick}>登陆</button>
+        )
+    }
+    function LogoutButton(props) {
+        return(
+            <button onClick={props.onClick}>退出</button>
+        )
+    }
+    ReactDOM.render(
+        <LoginControl/>,
+        document.getElementById('container')
+    )
+</script>
+</html>
