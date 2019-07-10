@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="container">
+    <!--作为一个容器，用来插入react生成的dom节点-->
+</div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+    class TextList extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {dataList:['1','2','3','4','5','6','7','8']}
+        }
+        renderList=()=>{
+            let ItemList = this.state.dataList.map((data,index)=>{
+                return (<li key={index}>
+                    {data}
+                </li>)
+            });
+            let ItemLists = this.state.dataList.map((data,index)=>
+                <li>{data}</li>
+            )
+            console.log(ItemList)
+            console.log(ItemLists)
+            return ItemList
+        }
+        render(){
+            return(
+                <ul>
+                    {this.renderList()}
+                </ul>
+            )
+        }
+    }
+    ReactDOM.render(
+        <TextList/>,
+        document.getElementById('container')
+    )
+</script>
+</html>
