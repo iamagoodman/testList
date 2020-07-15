@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React!</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+<div id="container">
+    <!--作为一个容器，用来插入react生成的dom节点-->
+</div>
+</body>
+<!--babel 转编译器，把es6语法转成浏览器运行代码-->
+<script type="text/babel">
+    class SetState extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {clickNum:0}
+        }
+        clicknumber=()=>{
+            let num = this.state.clickNum
+            console.log(this.state.clickNum)
+            this.setState({clickNum:this.state.clickNum+1})
+            // this.setState(function (state) {
+            //     return ({clickNum:state.clickNum+1})
+            // })
+        }
+        render(){
+            return (
+                <div>
+                    <p>当前数字为{this.state.clickNum}</p>
+                    <button onClick={this.clicknumber}>点我增加</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(
+        <SetState/>,
+        document.getElementById('container')
+    )
+</script>
+</html>
