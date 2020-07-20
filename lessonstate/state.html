@@ -13,29 +13,65 @@
     </div>
 </body>
 <!--babel 转编译器，把es6语法转成浏览器运行代码-->
-<script type="text/babel">
+<script>
 // 编写react代码
     /*
     * 定义组件， button  给 button 添加事件处理
     * */
-    class MyButton extends React.Component{
-        constructor(props){
-            super(props);
-            this.handleClick = this.handleClick.bind(this)
-        }
-        handleClick(){
-            console.log('do something')
-        }
-        render(){
-            return(
-                <button onClick={this.handleClick}>{this.props.buttonTitle}</button>
-            )
+    // class MyButton extends React.Component{
+    //     constructor(props){
+    //         super(props);
+    //         this.handleClick = this.handleClick.bind(this)
+    //     }
+    //     handleClick(){
+    //         console.log('do something')
+    //     }
+    //     render(){
+    //         return(
+    //             <button onClick={this.handleClick}>{this.props.buttonTitle}</button>
+    //         )
+    //     }
+    // }
+    // MyButton.
+    // ReactDOM.render(
+    //     <MyButton buttonTitle="按钮"/>,
+    //     document.getElementById('container')
+    // )
+    function 摇色子(){
+        return new Promise((resolve, reject)=>{
+            let sino = parseInt(Math.random() * 6 +1)
+            setTimeout(()=>{
+                resolve(sino)
+            },10000)
+        })
+    }
+    async function test(){
+        let n =await 摇色子()
+        return n
+    }
+    test().then(v=>{
+        console.log(v)
+    });
+    console.log('fdsafsdafsafdsa')
+    let objlight = {
+        red:3000,
+        yellow:2000,
+        green:2000
+    }
+    for(var i=0;i<2;i++){
+        for(var key in objlight){
+            var current = objlight[key]
+            console.log(key)
+            console.log(current)
+            (function(key){
+                console.log(key)
+                // console.log(current)
+            })(key)
+
         }
     }
-    MyButton.
-    ReactDOM.render(
-        <MyButton buttonTitle="按钮"/>,
-        document.getElementById('container')
-    )
+    function light(obj) {
+
+    }
 </script>
 </html>
