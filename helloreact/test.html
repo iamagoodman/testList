@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+<style>
+    #light{
+        width: 200px;
+        height: 200px;
+    }
+    .red{
+        background: red;
+    }
+    .green{
+        background: green;
+    }
+    .yellow{
+        background: yellow;
+    }
+</style>
+<body>
+<div id="light" class="red">
+    <div id="aaa" style="width: 100px;height: 100px;background: white"></div>
+</div>
+<div id="div1" style="display: flex;width: 300px;height: 300px;background: #2c3e50">
+    <div style="margin: auto;background: #42b983">
+        <div style="width: 200px;height: 200px"></div>
+    </div>
+</div>
+<div onclick="clickMe()" style="height:300px;width: 300px;background: #7f7f7f ;display: flex;align-items: center;justify-content: center">
+    <div style="width: 100px;height: 100px;background: #42b983"></div>
+</div>
+<div style="display: table;height: 300px;width: 300px;background: navajowhite;text-align: center">
+    <div style="display: table-cell;background: green;vertical-align: middle">
+        fdsafsdafsafsafasdfsafas
+    </div>
+</div>
+<script>
+
+    // $.post("http://127.0.0.1:3389/web/",{},
+    //     function(data) {
+    //         console.log(data)
+    //     }
+    // )
+
+    let p = new Promise((resolve, reject) => {
+        // ?异步操作，最终调用:
+        //
+        const parmas = 0;
+        resolve(parmas); // fulfilled
+        // ?或
+        reject("failure reason"); // rejected
+    })
+
+    p.then((parmas) => {
+                // parmas，resolve返回的值
+                console.log(parmas);
+                // 你的代码块 code...
+                return 123; //返回值给下一个then
+            }
+        ).then(
+            (parmas) => {
+                // parmas，上一个then返回的值
+                console.log(parmas);
+                // 你的代码块 code...
+                return 456; //返回值给下一个then
+            }
+        ).then(
+            (parmas) => {
+                // parmas，上一个then返回的值
+                console.log(parmas);
+                // 你的代码块 code...
+                return 789; //返回值给下一个then
+            }
+        ).then((parmas)=>{
+            console.log(parmas)
+    })
+
+    function F(want) {
+        return new Promise((resolve,reject)=>{
+            if(typeof want=='function'){
+                resolve(want)
+            }else{
+                reject(want)
+            }
+        })
+    }
+    function want() {
+        console.log('这里是我要执行的代码')
+    }
+    F(want).then((want)=>{
+        want()
+    }).then(()=>{
+        console.log('我执行完了')
+    })
+
+
+    var light = document.getElementById('light');
+    function Fpromise(t) {
+        return new Promise((resolve,reject)=>{
+            setTimeout(resolve,t)
+        })
+    }
+    function startlight() {
+        Fpromise(3000).then(()=>{
+            light.className = 'yellow'
+            return Fpromise(3000)
+        }).then(()=>{
+            light.className = 'green'
+            return Fpromise(3000)
+        }).then(()=>{
+            light.className = 'red'
+            startlight()
+        })
+    }
+    // startlight()
+    class LightFn{
+        constructor(){
+
+        }
+        async run(){
+            while (true){
+                this.lightcolor('red')
+                await this.sleep(3000)
+                this.lightcolor('yellow')
+                await this.sleep(2000)
+                this.lightcolor('green')
+                await this.sleep(3000)
+            }
+        }
+        lightcolor(classname){
+            light.className = classname
+        }
+        sleep(time){
+            return new Promise((resolve,reject)=>{
+                setTimeout(resolve,time)
+            })
+        }
+    }
+    var a = new LightFn()
+    a.run()
+    document.getElementById('light').addEventListener('click',function (e) {
+        if(e.target==this){
+            console.log('light')
+        }
+        console.log(e)
+    },true)
+    document.getElementById('aaa').addEventListener('click',function (e) {
+        console.log('aaa')
+        e.stopPropagation()
+        console.log(e)
+    },true)
+
+    function f123() {
+        console.log(this)
+    }
+    f123()
+    function clickMe() {
+        console.log(this)
+    }
+    document.getElementById('div1').addEventListener('click',function (e) {
+        console.log(e)
+        console.log(this)
+        console.log(e.target==this)
+    })
+
+    function F12345() {
+        this.name = 'fasdfa'
+        this.say = function () {
+            console.log(this)
+        }
+    }
+    var vb = new F12345()
+    vb.say()
+    console.log(vb)
+    console.log(F12345)
+    var qwer = {
+        name:'fdsa',
+        say:function () {
+            console.log(this)
+        }
+    }
+    qwer.say()
+
+
+
+
+</script>
+
+</body>
+</html>

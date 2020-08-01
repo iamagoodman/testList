@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log(1)
+    setTimeout(()=>{console.log(2)},0)
+    new Promise((resolve, reject)=>{
+        console.log(3)
+        resolve()
+    }).then(()=>{
+        console.log(4)
+    })
+    new Promise((resolve, reject)=>{
+        console.log(5)
+        resolve()
+    }).then(()=>{
+        console.log(6)
+    })
+    new Promise((resolve, reject)=>{
+        console.log(7)
+        resolve()
+    }).then(()=>{
+        console.log(8)
+    })
+    setTimeout(()=>{console.log(9)},0)
+    console.log(10)
+    var data1 = {
+        name:'fdasfa',
+        age:"122"
+    }
+    function abc(data) {
+        data.name = 'qwer'
+    }
+    abc(data1)
+    console.log(data1)
+    function efg() {
+        console.log(Array.prototype.slice.apply(arguments))
+        console.log(Array.prototype.slice.call(arguments))
+    }
+    efg(1,2,3,4,5)
+    function FAS() {
+        this.name = 'fads'
+    }
+    FAS.prototype.sex = 'sx'
+    var fas = new FAS()
+    console.log(fas.fsds)
+    var asdf = 'fdfd'
+    function fesd(str) {
+        str = 'ewew'
+    }
+    fesd(asdf)
+    console.log(asdf)
+    console.log(FAS.__proto__)
+    console.log(FAS.prototype.prototype)
+    console.log(fas.__proto__)
+    var dae = {a:123}
+    var gfd = {b:4323,c:432,a:454}
+    Object.assign(dae,gfd)
+    console.log(dae)
+    var arr123 = [1,2,3,4,5,6]
+    console.log(arr123.find(item=>{return item==3}))
+    console.log(arr123.filter(item=>{return item>3}))
+    var arr234 = [1,2,3,4,5,6,7,8,9,10]
+</script>
+</body>
+</html>
